@@ -18,10 +18,13 @@ var CatElement = function(nameText, foodText, imageUrl) {
   var catElement = document.createElement( 'ul' );
   catElement.classList.add( "cat" );
   var name = document.createElement( "li" );
+  if (nameText === undefined) nameText = "undefined";
   addName(catElement, name, nameText);
   var food = document.createElement( "li" );
+  if (foodText === undefined) foodText = "undefined"
   addFood(catElement, food, foodText);
   var img = document.createElement( "img" );
+  if (imageUrl === undefined) imageUrl = "/place_holder.jpg";
   addImage(catElement, img, imageUrl);
 
   return {
@@ -46,10 +49,11 @@ var addCat = function( nameText, foodText, image ) {
 var app = function() {
   addCat("Alan", "Tuna (of course)", "http://kurld.com/images/wallpapers/cute-cat-wallpapers/cute-cat-wallpapers-18.jpg");
   addCat("Mad, Bad and Ready", "Everything", "http://www.housesearchaustralia.com.au/wp-content/uploads/2016/02/Guggugg.jpg");
-  var maccafferty = addCat("", "", "http://www.qqxxzx.com/images/cute-cats-images/cute-cats-images-9.jpg");
+  // var maccafferty = addCat("", "", "http://www.qqxxzx.com/images/cute-cats-images/cute-cats-images-9.jpg");
+  var maccafferty = addCat();
   maccafferty.name = "MacCafferty the Mystery Cat";
   maccafferty.food = "Shoes";
-  // maccafferty.imageUrl = "http://www.qqxxzx.com/images/cute-cats-images/cute-cats-images-9.jpg";
+  maccafferty.imageUrl = "http://www.qqxxzx.com/images/cute-cats-images/cute-cats-images-9.jpg";
 }
 
 window.onload = app;

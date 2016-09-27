@@ -31,7 +31,7 @@ var CatElement = function(nameText, foodText, imageUrl) {
 
   var addImage = function( parent, child, imageUrl ) {
     if (imageUrl === undefined) imageUrl = "/place_holder.jpg";
-    return addImg(catElement, child, imageUrl, 500);
+    return addImg(parent, child, imageUrl, 500);
   }
 
   var catElement = document.createElement( 'ul' );

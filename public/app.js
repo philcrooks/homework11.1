@@ -1,37 +1,50 @@
-var addName = function( parent, child, nameText ) {
-  child.innerText = "Name: " + nameText;  
-  parent.appendChild(child);
+var addLi = function( parent, child, text ) {
+  if (child === null) {
+    child = document.createElement( "li" );
+    parent.appendChild(child);
+  }
+  child.innerText = text;
+  return child;
 }
 
-var addFood = function( parent, child, foodText ) {
-  child.innerText = "Favourite food: " + foodText;
-  parent.appendChild(child);
-}
-
-var addImage = function( parent, child, imageUrl) {
+var addImg = function( parent, child, imageUrl, imageWidth) {
+  if (child === null) {
+    child = document.createElement( "img" );
+    if (imageWidth !== undefined) child.width = imageWidth;
+    parent.appendChild( child );
+  }
   child.src = imageUrl;
-  child.width = 500;
-  parent.appendChild( child );
+  return child;
 }
 
 var CatElement = function(nameText, foodText, imageUrl) {
+
+  var addName = function( parent, child, nameText ) {
+    if (nameText === undefined) nameText = "undefined";
+    return addLi(parent, child, "Name: " + nameText);  
+  }
+
+  var addFood = function( parent, child, foodText) {
+    if (foodText === undefined) foodText = "undefined"
+    return addLi(parent, child, "Favourite food: " + foodText );
+  }
+
+  var addImage = function( parent, child, imageUrl ) {
+    if (imageUrl === undefined) imageUrl = "/place_holder.jpg";
+    return addImg(catElement, child, imageUrl, 500);
+  }
+
   var catElement = document.createElement( 'ul' );
   catElement.classList.add( "cat" );
-  var name = document.createElement( "li" );
-  if (nameText === undefined) nameText = "undefined";
-  addName(catElement, name, nameText);
-  var food = document.createElement( "li" );
-  if (foodText === undefined) foodText = "undefined"
-  addFood(catElement, food, foodText);
-  var img = document.createElement( "img" );
-  if (imageUrl === undefined) imageUrl = "/place_holder.jpg";
-  addImage(catElement, img, imageUrl);
+  var name = addName(catElement, null, nameText);
+  var food = addFood(catElement, null, foodText);
+  var image = addImage(catElement, null, imageUrl);
 
   return {
     get catElement() { return catElement },
-    set name( nameText ) { addName( catElement, name, nameText ) },
-    set food( foodText ) { addFood( catElement, food, foodText ) },
-    set image( imageUrl ) { addImage( catElement, addImage, imgURL) }
+    set name( nameText ) { addName(null, name, nameText); },
+    set food( foodText ) { addFood(null, food, foodText); },
+    set image( imageUrl ) { addImage(null, image, imageUrl); }
   };
 }
 
@@ -53,7 +66,7 @@ var app = function() {
   var maccafferty = addCat();
   maccafferty.name = "MacCafferty the Mystery Cat";
   maccafferty.food = "Shoes";
-  maccafferty.imageUrl = "http://www.qqxxzx.com/images/cute-cats-images/cute-cats-images-9.jpg";
+  maccafferty.image = "http://www.qqxxzx.com/images/cute-cats-images/cute-cats-images-9.jpg";
 }
 
 window.onload = app;

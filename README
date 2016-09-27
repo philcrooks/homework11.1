@@ -1,0 +1,5 @@
+Uses a JS closure to contain an HTML "object" comprising a parent <ul> with two child <li> elements and one image. The closure exposes:
+1. The parent <ul>
+2. The innerText of the two <li> elements and
+3. The image URL (i.e. the src attribute).
+All three can be changed after the creation of the "object".
